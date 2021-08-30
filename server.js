@@ -10,6 +10,7 @@ server.use(express.json());
 server.use(cors());
 const mongoose = require("mongoose");
 const PORT = process.env.PORT;
+const URL_API=process.env.URL_API
 
 mongoose.connect(
   "mongodb://adhammhaydat:12345@cluster0-shard-00-00.qi4a6.mongodb.net:27017,cluster0-shard-00-01.qi4a6.mongodb.net:27017,cluster0-shard-00-02.qi4a6.mongodb.net:27017/myFirstDatabase?ssl=true&replicaSet=atlas-ipru7s-shard-0&authSource=admin&retryWrites=true&w=majority",
@@ -28,10 +29,7 @@ server.get("/", (req, res) => {
 });
 function showAllData(req, res) {
   axios
-    .get(
-      `https://flowers-api-13.herokuapp.com/getFlowers
-  `
-    )
+    .get(URL_API)
     .then((result) => {
       res.send(result.data);
     });
